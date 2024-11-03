@@ -126,4 +126,4 @@ window.onload = function() {
 document.addEventListener('DOMContentLoaded', function() {  
     document.getElementById('newQuote').addEventListener('click', showRandomQuote);  
     createAddQuoteForm();  
-});
+});;
