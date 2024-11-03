@@ -38,5 +38,3 @@ function addQuote() {
 
 // Optionally display a random quote on load  
 showRandomQuote();
-
-
