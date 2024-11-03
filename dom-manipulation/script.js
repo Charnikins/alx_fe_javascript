@@ -16,6 +16,7 @@ function showRandomQuote() {
     sessionStorage.setItem('lastViewedQuote', JSON.stringify(randomQuote));  
 }  
 
+// Function to add a new quote  
 function addQuote() {  
     const quoteText = document.getElementById('newQuoteText').value;  
     const quoteCategory = document.getElementById('newQuoteCategory').value;  
@@ -44,6 +45,7 @@ function addQuote() {
     alert("Quote added!");  
 }  
 
+// Function to save quotes to local storage  
 function saveQuotes() {  
     localStorage.setItem('quotes', JSON.stringify(quotes));  
 }  
@@ -67,25 +69,25 @@ function createAddQuoteForm() {
     addButton.addEventListener('click', addQuote); // Use addEventListener  
 
     const exportButton = document.createElement('button');  
-    exportButton.innerText = 'Export Quotes';  
-    exportButton.addEventListener('click', exportQuotes); // Use addEventListener  
+    exportButton.innerText = 'Export Quotes'; // Ensure this button is present  
+    exportButton.addEventListener('click', exportToJsonFile); // Correct function name  
 
     const importInput = document.createElement('input');  
     importInput.type = 'file';  
     importInput.accept = '.json';  
     importInput.id = 'importFile';  
-    importInput.addEventListener('change', importFromJsonFile); // Use addEventListener  
+    importInput.addEventListener('change', importFromJsonFile); // Ensure this function is called  
 
     // Append the elements to the container  
     container.appendChild(quoteInput);  
     container.appendChild(categoryInput);  
     container.appendChild(addButton);  
-    container.appendChild(exportButton);  
-    container.appendChild(importInput);  
+    container.appendChild(exportButton); // Append export button  
+    container.appendChild(importInput); // Append import input  
 }  
 
 // Function to export quotes as JSON  
-function exportQuotes() {  
+function exportToJsonFile() {  
     const dataStr = JSON.stringify(quotes, null, 2);  
     const blob = new Blob([dataStr], { type: 'application/json' });  
     const url = URL.createObjectURL(blob);  
