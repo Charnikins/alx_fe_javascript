@@ -11,7 +11,7 @@ async function fetchQuotesFromServer() {
         return await response.json();  
     } catch (error) {  
         console.error('Error fetching quotes:', error);  
-        notifyUser('Error fetching quotes: ' + error.message, 'error');  
+        alert('Error fetching quotes: ' + error.message);  
         return [];  
     }  
 }  
@@ -39,7 +39,7 @@ async function postQuoteToServer(quote) {
         console.log('Quote posted successfully:', data);  
     } catch (error) {  
         console.error('Error posting quote:', error);  
-        notifyUser('Error posting quote: ' + error.message, 'error');  
+        alert('Error posting quote: ' + error.message);  
     }  
 }  
 
@@ -50,6 +50,7 @@ async function syncQuotes() {
     // Update local quotes based on server data  
     updateLocalQuotes(serverQuotes);  
     saveQuotes();  
+    alert('Quotes synced with server!'); // Alert on successful sync  
 }  
 
 // Update local quotes while handling conflicts  
@@ -76,9 +77,9 @@ function handleConflicts(conflicts) {
         const index = quotes.findIndex(q => q.text === conflict.local.text);  
         if (confirm(`Conflict detected for quote: "${conflict.local.text}". Do you want to use the server's data?`)) {  
             quotes[index] = conflict.server; // Update with server data  
-            notifyUser(`Updated "${conflict.local.text}" with server data.`, 'info');  
+            alert(`Updated "${conflict.local.text}" with server data.`);  
         } else {  
-            notifyUser(`Kept local version of "${conflict.local.text}".`, 'info');  
+            alert(`Kept local version of "${conflict.local.text}".`);  
         }  
     });  
 }  
@@ -86,25 +87,6 @@ function handleConflicts(conflicts) {
 // Function to save quotes to local storage  
 function saveQuotes() {  
     localStorage.setItem('quotes', JSON.stringify(quotes));  
-}  
-
-// Function to notify users of updates or errors  
-function notifyUser(message, type) {  
-    const notification = document.createElement('div');  
-    notification.innerText = message;  
-    notification.style.position = 'fixed';  
-    notification.style.bottom = '20px';  
-    notification.style.right = '20px';  
-    notification.style.backgroundColor = type === 'success' ? 'lightgreen' : type === 'error' ? 'lightcoral' : 'lightyellow';  
-    notification.style.padding = '10px';  
-    notification.style.border = '1px solid #ccc';  
-    notification.style.color = '#333';  
-    notification.style.zIndex = 1000;  
-    document.body.appendChild(notification);  
-
-    setTimeout(() => {  
-        document.body.removeChild(notification);  
-    }, 5000);  
 }  
 
 // Periodically sync quotes every 10 seconds  
