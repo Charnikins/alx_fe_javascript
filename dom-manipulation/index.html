@@ -10,7 +10,15 @@
     <h1>Dynamic Quote Generator</h1>  
     <div id="quoteDisplay"></div>  
     <button id="newQuote">Show New Quote</button>  
-    <div id="quoteFormContainer"></div> <!-- Placeholder for the dynamic form -->  
-    <button id="exportQuotes">Export Quotes</button> <!-- Export Quotes button added -->  
+    
+    <div id="quoteFormContainer"></div> <!-- Placeholder for dynamic form -->  
+    
+    <!-- Export Quotes button-->  
+    <button id="exportQuotes">Export Quotes</button>  
+    
+    <!-- File input for importing quotes -->  
+    <input type="file" id="importFile" accept=".json" style="display: none;"> <!-- Hidden by default -->  
+    <label for="importFile" style="cursor: pointer;">Import Quotes</label> <!-- Associated label -->  
+    
 </body>  
 </html>
