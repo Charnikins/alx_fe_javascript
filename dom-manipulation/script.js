@@ -49,7 +49,7 @@ function saveQuotes() {
 }  
 
 function createAddQuoteForm() {  
-    const container = document.createElement('div');  
+    const container = document.getElementById('quoteFormContainer');  
 
     const quoteInput = document.createElement('input');  
     quoteInput.id = 'newQuoteText';  
@@ -71,7 +71,7 @@ function createAddQuoteForm() {
 
     const importButton = document.createElement('button');  
     importButton.innerText = 'Import Quotes';  
-    
+
     const inputFile = document.createElement('input');  
     inputFile.type = 'file';  
     inputFile.id = 'importFile';  
@@ -114,12 +114,6 @@ function importFromJsonFile(event) {
     fileReader.readAsText(event.target.files[0]);  
 }  
 
-// Initialize the quote form and load the last viewed quote if exists  
+// Initialize the application  
 createAddQuoteForm();  
-showRandomQuote();  
-
-// Set up the event listener for the "Show New Quote" button  
-document.getElementById('newQuote').addEventListener('click', showRandomQuote);  
-
-// Optionally display a random quote on load  
 showRandomQuote();
